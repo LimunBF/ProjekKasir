@@ -12,3 +12,4 @@ public class KoneksiDB {
         return DriverManager.getConnection(url, username, password);
     }
 }
+//cekk
