@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import koneksi.KoneksiDB;
 
 public class CRUDAdmin {
@@ -26,7 +28,7 @@ public class CRUDAdmin {
         return false;
     }
     
-    public static void createDataAdmin(String username, String password) {
+    public static void createDataAdmin(String username, String password, JRootPane rootPane) {
         try {
             Connection koneksi = KoneksiDB.getConnection();
 
@@ -38,14 +40,15 @@ public class CRUDAdmin {
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
                 System.out.println("Data anggota berhasil dimasukkan ke dalam database.");
-            } else {
+            }else {
                 System.out.println("Data anggota gagal dimasukkan ke dalam database.");
             }
-
             preparedStatement.close();
             koneksi.close();
+            JOptionPane.showMessageDialog(rootPane, "AKUN BERHASIL DIBUAT");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "GAGAL MEMBUAT AKUN");
         }
     }
     
