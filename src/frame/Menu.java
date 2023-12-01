@@ -27,16 +27,31 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         btnBarang = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnMember = new javax.swing.JButton();
+        btnTransaksi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBarang.setText("BARANG");
+        btnBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBarangActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("MEMBER");
+        btnMember.setText("MEMBER");
+        btnMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMemberActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("TRANSAKSI");
+        btnTransaksi.setText("TRANSAKSI");
+        btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransaksiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,10 +60,10 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(btnBarang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(154, 154, 154)
-                .addComponent(jButton3)
+                .addGap(164, 164, 164)
+                .addComponent(btnMember)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addComponent(btnTransaksi)
                 .addGap(64, 64, 64))
         );
         layout.setVerticalGroup(
@@ -57,13 +72,34 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(211, 211, 211)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBarang)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnMember)
+                    .addComponent(btnTransaksi))
                 .addContainerGap(308, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        DataBarang barang = new DataBarang();
+        barang.setVisible(true);
+    }//GEN-LAST:event_btnBarangActionPerformed
+
+    private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
+        // TODO add your handling code here:\
+        dispose();
+        DataMember member = new DataMember();
+        member.setVisible(true);
+    }//GEN-LAST:event_btnMemberActionPerformed
+
+    private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Transaksi transaksi = new Transaksi();
+        transaksi.setVisible(true);
+    }//GEN-LAST:event_btnTransaksiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,7 +108,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBarang;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnMember;
+    private javax.swing.JButton btnTransaksi;
     // End of variables declaration//GEN-END:variables
 }
