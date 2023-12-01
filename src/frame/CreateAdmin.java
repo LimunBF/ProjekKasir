@@ -4,7 +4,7 @@
  */
 package frame;
 
-import database_admin.CRUDAdmin;
+import databaseAdmin.CRUDAdmin;
 import javax.swing.JRootPane;
 
 /**

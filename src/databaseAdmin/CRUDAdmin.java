@@ -1,4 +1,4 @@
-package database_admin;
+package databaseAdmin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
