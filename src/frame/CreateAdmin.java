@@ -40,7 +40,7 @@ public class CreateAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 255, 0));
 
         InputUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
