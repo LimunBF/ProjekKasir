@@ -4,6 +4,16 @@
  */
 package frame;
 
+import databaseBarang.CreatDbBarang;
+import databaseBarang.DeleteDbBarang;
+import databaseBarang.TampilDataBarang;
+import databaseBarang.UpdateDbBarang;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ACER
@@ -13,10 +23,74 @@ public class DataBarang extends javax.swing.JFrame {
     /**
      * Creates new form DataBarang
      */
+    
+    TampilDataBarang tampilData = new TampilDataBarang();
+    int selectedRow = -1;
+    
+    
     public DataBarang() {
         initComponents();
+        String[] columns = {
+          "Kode Barang", 
+          "Nama Barang", 
+          "Harga Barang", 
+          "Jumlah Barang",
+        };
         
+        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         
+        this.tabelDataBarang.setModel(model);
+        ResultSet rs = tampilData.tampilkanDataSemuaBarang();
+        
+        try{
+            int i = 0;
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+        this.tabelDataBarang.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                int row = tabelDataBarang.getSelectedRow();
+                selectedRow = row;
+                inpKodeBarang.setText(tabelDataBarang.getValueAt(row, 0).toString());
+                inpNamaBarang.setText(tabelDataBarang.getValueAt(row, 1).toString());
+                inpHargaBarang.setText(tabelDataBarang.getValueAt(row, 2).toString());
+                inpJumlahBarang.setText(tabelDataBarang.getValueAt(row, 3).toString());
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+//                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        } );
+        
+        setVisible(true);
     }
 
     /**
@@ -39,10 +113,12 @@ public class DataBarang extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         inpJumlahBarang = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelDataBarang = new javax.swing.JTable();
         btnHapusBarang = new javax.swing.JButton();
         btnEditBarang = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
+        inpCariBarang = new javax.swing.JTextField();
+        btnCari = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +137,7 @@ public class DataBarang extends javax.swing.JFrame {
 
         jLabel4.setText("HARGA BARANG");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDataBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,12 +156,12 @@ public class DataBarang extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tabelDataBarang);
+        if (tabelDataBarang.getColumnModel().getColumnCount() > 0) {
+            tabelDataBarang.getColumnModel().getColumn(0).setResizable(false);
+            tabelDataBarang.getColumnModel().getColumn(1).setResizable(false);
+            tabelDataBarang.getColumnModel().getColumn(2).setResizable(false);
+            tabelDataBarang.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnHapusBarang.setText("HAPUS");
@@ -106,6 +182,13 @@ public class DataBarang extends javax.swing.JFrame {
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKembaliActionPerformed(evt);
+            }
+        });
+
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
             }
         });
 
@@ -142,8 +225,12 @@ public class DataBarang extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnHapusBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(inpCariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -171,11 +258,15 @@ public class DataBarang extends javax.swing.JFrame {
                         .addComponent(btnSimpanBarang)
                         .addGap(23, 23, 23))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inpCariBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHapusBarang)
                     .addComponent(btnEditBarang))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(btnKembali)
                 .addGap(15, 15, 15))
         );
@@ -198,60 +289,86 @@ public class DataBarang extends javax.swing.JFrame {
 
     private void btnSimpanBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBarangActionPerformed
         // TODO add your handling code here:
+        CreatDbBarang inputData = new CreatDbBarang();
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBarang.getModel();   
+        inputData.inputDataBarang(Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()),rootPane);
+        ResultSet rs = tampilData.tampilkanDataBarang(this.inpKodeBarang.getText());
+        try{
+            
+            if(rs.next()){
+                tabelData2.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+            } else{
+                System.out.println("Data tidak bisa ditampilkan");
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSimpanBarangActionPerformed
 
     private void btnHapusBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusBarangActionPerformed
         // TODO add your handling code here:
+        DeleteDbBarang deleteData = new DeleteDbBarang();
+        deleteData.deleteDataBarang(Integer.parseInt(inpKodeBarang.getText()), rootPane);
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        tabel.removeRow(selectedRow);
+        inpKodeBarang.setText("");
+        inpNamaBarang.setText("");
+        inpHargaBarang.setText("");
+        inpJumlahBarang.setText("");
     }//GEN-LAST:event_btnHapusBarangActionPerformed
 
     private void btnEditBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditBarangActionPerformed
         // TODO add your handling code here:
+        UpdateDbBarang updateData = new UpdateDbBarang();
+        updateData.updateDataBarang (Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()), rootPane);
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        tabel.addRow(new Object[]{inpKodeBarang.getText(), inpNamaBarang.getText(), inpHargaBarang.getText(),inpJumlahBarang.getText()});
+        tabel.removeRow(selectedRow);
     }//GEN-LAST:event_btnEditBarangActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+         ResultSet rs;
+        if(!"".equals(inpCariBarang.getText())) {
+            rs = tampilData.tampilkanDataBarang(inpCariBarang.getText());
+        } else {
+            rs = tampilData.tampilkanDataSemuaBarang();
+        }
+        
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        
+        try{
+            for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
+                tabel.removeRow(i);
+            }
+            while(rs.next()){
+                tabel.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+            }
+            
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCariActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DataBarang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DataBarang().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCari;
     private javax.swing.JButton btnEditBarang;
     private javax.swing.JButton btnHapusBarang;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpanBarang;
+    private javax.swing.JTextField inpCariBarang;
     private javax.swing.JTextField inpHargaBarang;
     private javax.swing.JTextField inpJumlahBarang;
     private javax.swing.JTextField inpKodeBarang;
@@ -262,6 +379,6 @@ public class DataBarang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelDataBarang;
     // End of variables declaration//GEN-END:variables
 }

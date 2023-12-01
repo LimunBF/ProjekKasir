@@ -68,7 +68,7 @@ public class CreateAdmin extends javax.swing.JFrame {
         LabelPassword.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         LabelPassword.setText("password");
 
-        btnKembali.setText("jButton2");
+        btnKembali.setText("Kembali");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKembaliActionPerformed(evt);
@@ -163,8 +163,8 @@ public class CreateAdmin extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-            LoginForm framedata = new LoginForm();
-            framedata.setVisible(true);
+            LoginForm login = new LoginForm();
+            login.setVisible(true);
             dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
 
