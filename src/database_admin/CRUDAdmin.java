@@ -26,7 +26,7 @@ public class CRUDAdmin {
         return false;
     }
     
-            public static void createDataAdmin(String username, String password) {
+    public static void createDataAdmin(String username, String password) {
         try {
             Connection koneksi = KoneksiDB.getConnection();
 
@@ -48,4 +48,22 @@ public class CRUDAdmin {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public boolean exists(String username) {
+        try {
+            Connection koneksi = KoneksiDB.getConnection();
+
+            String checkquery = "SELECT id FROM admin WHERE username = ?";
+
+            try (PreparedStatement preparedStatement = koneksi.prepareStatement(checkquery)) {
+                preparedStatement.setString(1, username);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                return resultSet.next();
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
 }
