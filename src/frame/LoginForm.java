@@ -15,8 +15,6 @@ public class LoginForm extends javax.swing.JFrame {
      * Creates new form LoginForm
      */
     
-    private static final String DEFAULT_USERNAME_TEXT = "Username";
-    private static final String DEFAULT_PASSWORD_TEXT = "Password";
     
     public LoginForm() {
         initComponents();
@@ -165,16 +163,11 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void InputUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_InputUsernameFocusGained
         // TODO add your handling code here:
-        if (InputUsername.getText().isEmpty()) {
-            InputUsername.setText(DEFAULT_USERNAME_TEXT);
-        }
     }//GEN-LAST:event_InputUsernameFocusGained
 
     private void InputUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InputUsernameMouseClicked
         // TODO add your handling code here:
-        if (InputUsername.getText().equals(DEFAULT_USERNAME_TEXT)) {
-            InputUsername.setText("");
-        }
+        
     }//GEN-LAST:event_InputUsernameMouseClicked
 
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
@@ -183,9 +176,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void inputPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPasswordMouseClicked
         // TODO add your handling code here:
-        if (inputPassword.getText().equals(DEFAULT_PASSWORD_TEXT)) {
-            inputPassword.setText("");
-        }
+        
     }//GEN-LAST:event_inputPasswordMouseClicked
 
     /**
