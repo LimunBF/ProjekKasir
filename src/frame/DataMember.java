@@ -4,6 +4,11 @@
  */
 package frame;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import databaseMember.TampilDataMember;
+import databaseMember.CreateMember;
 /**
  *
  * @author ACER
@@ -13,8 +18,39 @@ public class DataMember extends javax.swing.JFrame {
     /**
      * Creates new form DataMember
      */
+    
+    TampilDataMember tampilData = new TampilDataMember();
+    int selectedRow = -1;
+    
     public DataMember() {
         initComponents();
+        String[] columns = {
+          "Mama Member", 
+          "No HP", 
+          "Email Member", 
+          "Doomisili Member",
+        };   
+        DefaultTableModel modeltabel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        this.tabelDataMember.setModel(modeltabel);
+        ResultSet rs = tampilData.tampilkanDataSemuaMember();
+        
+        try{
+            int i = 0;
+            while(rs.next()){
+                modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"),rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
+                i++;
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        
+        setVisible(true);  
     }
 
     /**
@@ -37,7 +73,7 @@ public class DataMember extends javax.swing.JFrame {
         InputEmail = new javax.swing.JTextField();
         InputDomisili = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelDataBarang = new javax.swing.JTable();
+        tabelDataMember = new javax.swing.JTable();
         btnCari = new javax.swing.JButton();
         InputCariMember = new javax.swing.JTextField();
         btnSimpanMember = new javax.swing.JButton();
@@ -63,7 +99,7 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
-        tabelDataBarang.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDataMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -82,7 +118,12 @@ public class DataMember extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabelDataBarang);
+        tabelDataMember.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelDataMemberMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabelDataMember);
 
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +261,7 @@ public class DataMember extends javax.swing.JFrame {
             rs = tampilData.tampilkanDataSemuaBarang();
         }
 
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
 
         try{
             for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
@@ -237,9 +278,24 @@ public class DataMember extends javax.swing.JFrame {
 
     private void btnSimpanMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMemberActionPerformed
         // TODO add your handling code here:
-        CreatDbBarang inputData = new CreatDbBarang();
-        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBarang.getModel();
-        inputData.inputDataBarang(Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()),rootPane);
+        try {
+            // TODO add your handling code here:
+            String Namamember = InputNama.getText();
+            String Emailmember = InputEmail.getText();
+            String NoHPmember = InputHandphone.getText();
+            String Domisilimember = InputDomisili.getText();
+            
+            CreateMember.CreateDataMember(Namamember, Emailmember, Namamember, Domisilimember);
+        }   catch (Exception e) {
+            e.printStackTrace();
+        } 
+        
+        
+        CreateMember inputData = new CreateMember();
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataMember.getModel();
+        
+        CreateMember.CreateDataMember(integer.parseInt(InputNama.getText()) );
+        cre.inputDataBarang(Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()),rootPane);
         ResultSet rs = tampilData.tampilkanDataBarang(this.inpKodeBarang.getText());
         try{
 
@@ -264,7 +320,7 @@ public class DataMember extends javax.swing.JFrame {
         // TODO add your handling code here:
         DeleteDbBarang deleteData = new DeleteDbBarang();
         deleteData.deleteDataBarang(Integer.parseInt(inpKodeBarang.getText()), rootPane);
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
         tabel.removeRow(selectedRow);
         inpKodeBarang.setText("");
         inpNamaBarang.setText("");
@@ -276,10 +332,21 @@ public class DataMember extends javax.swing.JFrame {
         // TODO add your handling code here:
         UpdateDbBarang updateData = new UpdateDbBarang();
         updateData.updateDataBarang (Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()), rootPane);
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
         tabel.addRow(new Object[]{inpKodeBarang.getText(), inpNamaBarang.getText(), inpHargaBarang.getText(),inpJumlahBarang.getText()});
         tabel.removeRow(selectedRow);
     }//GEN-LAST:event_btnEditMemberActionPerformed
+
+    private void tabelDataMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelDataMemberMousePressed
+        // TODO add your handling code here:
+        int row = tabelDataMember.getSelectedRow();
+                selectedRow = row;
+                InputKode.setText(tabelDataMember.getValueAt(row, 0).toString());
+                InputNama.setText(tabelDataMember.getValueAt(row, 1).toString());
+                InputHandphone.setText(tabelDataMember.getValueAt(row, 2).toString());
+                InputEmail.setText(tabelDataMember.getValueAt(row, 3).toString());
+                InputDomisili.setText(tabelDataMember.getValueAt(row, 4).toString());
+    }//GEN-LAST:event_tabelDataMemberMousePressed
 
     /**
      * @param args the command line arguments
@@ -334,6 +401,6 @@ public class DataMember extends javax.swing.JFrame {
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpanMember;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelDataBarang;
+    private javax.swing.JTable tabelDataMember;
     // End of variables declaration//GEN-END:variables
 }
