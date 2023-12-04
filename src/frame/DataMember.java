@@ -26,14 +26,96 @@ public class DataMember extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        LabelKOde = new javax.swing.JLabel();
+        LabelNama = new javax.swing.JLabel();
+        LabelNO = new javax.swing.JLabel();
+        LabelEmail = new javax.swing.JLabel();
+        LabelDomisili = new javax.swing.JLabel();
+        InputKode = new javax.swing.JTextField();
+        InputNama = new javax.swing.JTextField();
+        InputHandphone = new javax.swing.JTextField();
+        InputEmail = new javax.swing.JTextField();
+        InputDomisili = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelDataBarang = new javax.swing.JTable();
+        btnCari = new javax.swing.JButton();
+        InputCariMember = new javax.swing.JTextField();
+        btnSimpanMember = new javax.swing.JButton();
+        btnKembali = new javax.swing.JButton();
+        btnHapusMember = new javax.swing.JButton();
+        btnEditMember = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("MEMBER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        LabelKOde.setText("KODE MEMBER");
+
+        LabelNama.setText("NAMA MEMBER");
+
+        LabelNO.setText("NO HANDPHONE");
+
+        LabelEmail.setText("EMAIL");
+
+        LabelDomisili.setText("DOMISILI");
+
+        InputHandphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                InputHandphoneActionPerformed(evt);
+            }
+        });
+
+        tabelDataBarang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelDataBarang);
+
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariActionPerformed(evt);
+            }
+        });
+
+        btnSimpanMember.setText("SIMPAN");
+        btnSimpanMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanMemberActionPerformed(evt);
+            }
+        });
+
+        btnKembali.setText("KEMBALI");
+        btnKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKembaliActionPerformed(evt);
+            }
+        });
+
+        btnHapusMember.setText("HAPUS");
+        btnHapusMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusMemberActionPerformed(evt);
+            }
+        });
+
+        btnEditMember.setText("EDIT");
+        btnEditMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditMemberActionPerformed(evt);
             }
         });
 
@@ -42,24 +124,162 @@ public class DataMember extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jButton1)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LabelNama, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LabelNO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelKOde)
+                                    .addComponent(LabelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(LabelDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(InputKode)
+                                    .addComponent(InputNama)
+                                    .addComponent(InputHandphone)
+                                    .addComponent(InputDomisili)
+                                    .addComponent(InputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnSimpanMember, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnHapusMember, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditMember, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(InputCariMember)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCari, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addComponent(jButton1)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelKOde)
+                            .addComponent(InputKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelNama)
+                            .addComponent(InputNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LabelNO)
+                            .addComponent(InputHandphone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelEmail))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(InputDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelDomisili))
+                        .addGap(21, 21, 21)
+                        .addComponent(btnSimpanMember)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(InputCariMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCari))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHapusMember)
+                    .addComponent(btnEditMember))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnKembali)
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void InputHandphoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputHandphoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_InputHandphoneActionPerformed
+
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+        ResultSet rs;
+        if(!"".equals(InputCariMember.getText())) {
+            rs = tampilData.tampilkanDataBarang(InputCariMember.getText());
+        } else {
+            rs = tampilData.tampilkanDataSemuaBarang();
+        }
+
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+
+        try{
+            for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
+                tabel.removeRow(i);
+            }
+            while(rs.next()){
+                tabel.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+            }
+
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnSimpanMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMemberActionPerformed
+        // TODO add your handling code here:
+        CreatDbBarang inputData = new CreatDbBarang();
+        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataBarang.getModel();
+        inputData.inputDataBarang(Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()),rootPane);
+        ResultSet rs = tampilData.tampilkanDataBarang(this.inpKodeBarang.getText());
+        try{
+
+            if(rs.next()){
+                tabelData2.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+            } else{
+                System.out.println("Data tidak bisa ditampilkan");
+            }
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnSimpanMemberActionPerformed
+
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        // TODO add your handling code here:
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void btnHapusMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusMemberActionPerformed
+        // TODO add your handling code here:
+        DeleteDbBarang deleteData = new DeleteDbBarang();
+        deleteData.deleteDataBarang(Integer.parseInt(inpKodeBarang.getText()), rootPane);
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        tabel.removeRow(selectedRow);
+        inpKodeBarang.setText("");
+        inpNamaBarang.setText("");
+        inpHargaBarang.setText("");
+        inpJumlahBarang.setText("");
+    }//GEN-LAST:event_btnHapusMemberActionPerformed
+
+    private void btnEditMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMemberActionPerformed
+        // TODO add your handling code here:
+        UpdateDbBarang updateData = new UpdateDbBarang();
+        updateData.updateDataBarang (Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()), rootPane);
+        DefaultTableModel tabel = (DefaultTableModel) tabelDataBarang.getModel();
+        tabel.addRow(new Object[]{inpKodeBarang.getText(), inpNamaBarang.getText(), inpHargaBarang.getText(),inpJumlahBarang.getText()});
+        tabel.removeRow(selectedRow);
+    }//GEN-LAST:event_btnEditMemberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,6 +317,23 @@ public class DataMember extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField InputCariMember;
+    private javax.swing.JTextField InputDomisili;
+    private javax.swing.JTextField InputEmail;
+    private javax.swing.JTextField InputHandphone;
+    private javax.swing.JTextField InputKode;
+    private javax.swing.JTextField InputNama;
+    private javax.swing.JLabel LabelDomisili;
+    private javax.swing.JLabel LabelEmail;
+    private javax.swing.JLabel LabelKOde;
+    private javax.swing.JLabel LabelNO;
+    private javax.swing.JLabel LabelNama;
+    private javax.swing.JButton btnCari;
+    private javax.swing.JButton btnEditMember;
+    private javax.swing.JButton btnHapusMember;
+    private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btnSimpanMember;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelDataBarang;
     // End of variables declaration//GEN-END:variables
 }
