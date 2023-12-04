@@ -5,8 +5,12 @@
         <group>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseBarang/DeleteDbBarang.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/DataBarang.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseMember/DeleteMember.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseMember/UpdateMember.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseBarang/CreatDbBarang.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseMember/TampilDataMember.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseAdmin/CRUDAdmin.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/LoginForm.java</file>
         </group>
     </open-files>
 </project-private>
