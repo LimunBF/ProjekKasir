@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import databaseMember.TampilDataMember;
+import databaseMember.DeleteMember;
+import databaseMember.UpdateMember;
 import databaseMember.CreateMember;
 /**
  *
@@ -237,7 +239,7 @@ public class DataMember extends javax.swing.JFrame {
                     .addComponent(InputCariMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCari))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHapusMember)
                     .addComponent(btnEditMember))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,9 +258,9 @@ public class DataMember extends javax.swing.JFrame {
         // TODO add your handling code here:
         ResultSet rs;
         if(!"".equals(InputCariMember.getText())) {
-            rs = tampilData.tampilkanDataBarang(InputCariMember.getText());
+            rs = tampilData.tampilkanDataMember(InputCariMember.getText());
         } else {
-            rs = tampilData.tampilkanDataSemuaBarang();
+            rs = tampilData.tampilkanDataSemuaMember();
         }
 
         DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
@@ -281,22 +283,17 @@ public class DataMember extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String Namamember = InputNama.getText();
+            int NoHPmember = Integer.parseInt(InputHandphone.getText());
             String Emailmember = InputEmail.getText();
-            String NoHPmember = InputHandphone.getText();
             String Domisilimember = InputDomisili.getText();
             
-            CreateMember.CreateDataMember(Namamember, Emailmember, Namamember, Domisilimember);
+            CreateMember.CreateDataMember(Namamember, NoHPmember, Emailmember, Domisilimember, rootPane);
         }   catch (Exception e) {
             e.printStackTrace();
         } 
         
-        
-        CreateMember inputData = new CreateMember();
         DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataMember.getModel();
-        
-        CreateMember.CreateDataMember(integer.parseInt(InputNama.getText()) );
-        cre.inputDataBarang(Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()),rootPane);
-        ResultSet rs = tampilData.tampilkanDataBarang(this.inpKodeBarang.getText());
+        ResultSet rs = tampilData.tampilkanDataMember(this.InputKode.getText());
         try{
 
             if(rs.next()){
@@ -318,22 +315,32 @@ public class DataMember extends javax.swing.JFrame {
 
     private void btnHapusMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusMemberActionPerformed
         // TODO add your handling code here:
-        DeleteDbBarang deleteData = new DeleteDbBarang();
-        deleteData.deleteDataBarang(Integer.parseInt(inpKodeBarang.getText()), rootPane);
+        DeleteMember deleteData = new DeleteMember();
+        DeleteMember.deleteDataMember(SOMEBITS, rootPane);
         DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
         tabel.removeRow(selectedRow);
-        inpKodeBarang.setText("");
-        inpNamaBarang.setText("");
-        inpHargaBarang.setText("");
-        inpJumlahBarang.setText("");
+        
+        InputKode.setText("");
+        InputNama.setText("");
+        InputHandphone.setText("");
+        InputEmail.setText("");
+        InputDomisili.setText("");
     }//GEN-LAST:event_btnHapusMemberActionPerformed
 
     private void btnEditMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMemberActionPerformed
         // TODO add your handling code here:
-        UpdateDbBarang updateData = new UpdateDbBarang();
-        updateData.updateDataBarang (Integer.parseInt(inpKodeBarang.getText()),inpNamaBarang.getText(),Integer.parseInt(inpHargaBarang.getText()),Integer.parseInt(inpJumlahBarang.getText()), rootPane);
+        UpdateMember updateData = new UpdateMember();
+        updateData.updateDataMember(
+            Integer.parseInt(InputKode.getText()),
+            InputNama.getText(),
+            Integer.parseInt(InputHandphone.getText()),
+            InputEmail.getText(),
+            InputDomisili.getText(),
+            rootPane
+        );
+   
         DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
-        tabel.addRow(new Object[]{inpKodeBarang.getText(), inpNamaBarang.getText(), inpHargaBarang.getText(),inpJumlahBarang.getText()});
+        tabel.addRow(new Object[]{InputKode.getText(), InputNama.getText(), InputHandphone.getText(),InputEmail.getText(), InputDomisili.getText()});
         tabel.removeRow(selectedRow);
     }//GEN-LAST:event_btnEditMemberActionPerformed
 
