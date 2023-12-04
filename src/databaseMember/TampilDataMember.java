@@ -17,6 +17,19 @@ import koneksi.KoneksiDB;
 public class TampilDataMember {
     private ResultSet rs;
     
+    public ResultSet tampilkanDataMember (String id_member){
+        try{
+            Connection koneksi = KoneksiDB.getConnection();
+            String query = String.format("SELECT * FROM member WHERE id_member = \"%s\";", id_member);
+            Statement st = koneksi.createStatement();
+            this.rs = st.executeQuery(query);
+            return this.rs;
+         }catch (ClassNotFoundException | SQLException ex){
+           System.out.println("Terdapat Error : "+ex.getMessage());  
+       }
+        return this.rs;
+    }
+    
     public ResultSet tampilkanDataSemuaMember(){
         
         try{

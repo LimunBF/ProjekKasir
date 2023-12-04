@@ -3,17 +3,23 @@ package databaseMember;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import koneksi.KoneksiDB;
 
 public class CreateMember {
-    public static void CreateDataMember(String Namamember, String Emailmember, String NoHPmember, String Domisilimember) {
+    public static void CreateDataMember(String Namamember, int NoHPmember, String Emailmember, String Domisilimember, JRootPane rootPane) {
         try {
             Connection koneksi = KoneksiDB.getConnection();
 
             String insertQuery = "INSERT INTO member (nama_member, no_hp, email, domisili) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
+
+            // Set parameters
+            preparedStatement.setString(1, Namamember);
+            preparedStatement.setInt(2, NoHPmember); // Use setInt for integer values
+            preparedStatement.setString(3, Emailmember);
+            preparedStatement.setString(4, Domisilimember);
 
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
@@ -21,10 +27,12 @@ public class CreateMember {
             } else {
                 System.out.println("Data anggota gagal dimasukkan ke dalam database.");
             }
-
+            JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
             preparedStatement.close();
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
         }
     }
 }
+
