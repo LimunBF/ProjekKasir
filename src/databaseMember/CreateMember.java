@@ -8,31 +8,34 @@ import javax.swing.JRootPane;
 import koneksi.KoneksiDB;
 
 public class CreateMember {
-    public static void CreateDataMember(String Namamember, int NoHPmember, String Emailmember, String Domisilimember, JRootPane rootPane) {
-        try {
-            Connection koneksi = KoneksiDB.getConnection();
-
+    public static void CreateDataMember(String Namamember, int cleanedPhoneNumber, String Emailmember, String Domisilimember, JRootPane rootPane) {
+        try (Connection koneksi = KoneksiDB.getConnection()) {
             String insertQuery = "INSERT INTO member (nama_member, no_hp, email, domisili) VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
+            try (PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery)) {
+                // Set parameters
+                preparedStatement.setString(1, Namamember);
+                preparedStatement.setInt(2, cleanedPhoneNumber);
+                preparedStatement.setString(3, Emailmember);
+                preparedStatement.setString(4, Domisilimember);
 
-            // Set parameters
-            preparedStatement.setString(1, Namamember);
-            preparedStatement.setInt(2, NoHPmember); // Use setInt for integer values
-            preparedStatement.setString(3, Emailmember);
-            preparedStatement.setString(4, Domisilimember);
-
-            int rowCount = preparedStatement.executeUpdate();
-            if (rowCount > 0) {
-                System.out.println("Data anggota berhasil dimasukkan ke dalam database.");
-            } else {
-                System.out.println("Data anggota gagal dimasukkan ke dalam database.");
+                int rowCount = preparedStatement.executeUpdate();
+                if (rowCount > 0) {
+                    System.out.println("Data anggota berhasil dimasukkan ke dalam database.");
+                } else {
+                    System.out.println("Data anggota gagal dimasukkan ke dalam database.");
+                }
+                JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
+            } catch (SQLException ex) {
+                // Handle PreparedStatement-related exceptions
+                System.out.println("PreparedStatement Error: " + ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
             }
-            JOptionPane.showMessageDialog(rootPane, "INPUT DATA BERHASIL");
-            preparedStatement.close();
         } catch (ClassNotFoundException | SQLException ex) {
+            // Handle Connection-related exceptions
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(rootPane, "INPUT DATA GAGAL");
         }
     }
 }
+
 

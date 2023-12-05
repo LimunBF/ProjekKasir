@@ -304,18 +304,33 @@ public class DataMember extends javax.swing.JFrame {
     private void btnSimpanMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMemberActionPerformed
         // TODO add your handling code here:
         try {
-            // TODO add your handling code here:
-            String Namamember = InputNama.getText();
-            int NoHPmember = Integer.parseInt(InputHandphone.getText());
+            String Namamember = InputNama.getText();;
             String Emailmember = InputEmail.getText();
             String Domisilimember = InputDomisili.getText();
-            
-            CreateMember.CreateDataMember(Namamember, NoHPmember, Emailmember, Domisilimember, rootPane);
-            refreshTable();
-        }   catch (Exception e) {
+            String cleanedPhoneNumber = InputHandphone.getText().replaceAll("[^\\d]", "");
+
+            try {
+                int NoHPmember = Integer.parseInt(cleanedPhoneNumber);
+                // rest of your code...
+            } catch (NumberFormatException e) {
+                // Handle the case where the input is not a valid integer
+                e.printStackTrace();
+            }          
+
+            // Retrieve the latest ID from the database
+            int latestId = tampilData.getLatestMemberId();
+
+            // Increment the ID for the new member
+            int newId = latestId + 1;
+
+            // Set the new ID in the InputKode field
+            InputKode.setText(String.valueOf(newId));
+
+            // Create the new member with the incremented ID
+            CreateMember.CreateDataMember(Namamember, HAND_CURSOR, Emailmember, Domisilimember, rootPane);
+        } catch (Exception e) {
             e.printStackTrace();
-        } 
-        
+        }         
     }//GEN-LAST:event_btnSimpanMemberActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
