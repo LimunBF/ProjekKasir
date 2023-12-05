@@ -42,17 +42,40 @@ public class DataMember extends javax.swing.JFrame {
         this.tabelDataMember.setModel(modeltabel);
         ResultSet rs = tampilData.tampilkanDataSemuaMember();
         
-        try{
+        try {
             int i = 0;
-            while(rs.next()){
-                modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"),rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
-                i++;
+            if (rs != null) {  // Add this check
+                while (rs.next()) {
+                    modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"), rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
+                    i++;
+                }
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println("Pesan Error : " + e.getMessage());
         }
-        
-        setVisible(true);  
+
+        setVisible(true);
+    }
+    
+    private void refreshTable() {
+        DefaultTableModel tabelData = (DefaultTableModel) tabelDataMember.getModel();
+        tabelData.setRowCount(0); // Clear the table
+
+        ResultSet rs = tampilData.tampilkanDataSemuaMember();
+
+        try {
+            while (rs.next()) {
+                tabelData.addRow(new Object[]{
+                    rs.getString("id_member"),
+                    rs.getString("nama_member"),
+                    rs.getString("no_hp"),
+                    rs.getString("email"),
+                    rs.getString("domisili")
+                });
+            }
+        } catch (SQLException e) {
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
     }
 
     /**
@@ -288,22 +311,11 @@ public class DataMember extends javax.swing.JFrame {
             String Domisilimember = InputDomisili.getText();
             
             CreateMember.CreateDataMember(Namamember, NoHPmember, Emailmember, Domisilimember, rootPane);
+            refreshTable();
         }   catch (Exception e) {
             e.printStackTrace();
         } 
         
-        DefaultTableModel tabelData2 = (DefaultTableModel) tabelDataMember.getModel();
-        ResultSet rs = tampilData.tampilkanDataMember(this.InputKode.getText());
-        try{
-
-            if(rs.next()){
-                tabelData2.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
-            } else{
-                System.out.println("Data tidak bisa ditampilkan");
-            }
-        }catch(SQLException e){
-            System.out.println("Pesan Error : " + e.getMessage());
-        }
     }//GEN-LAST:event_btnSimpanMemberActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed

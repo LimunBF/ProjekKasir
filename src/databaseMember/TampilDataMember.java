@@ -40,7 +40,8 @@ public class TampilDataMember {
             Connection koneksi = KoneksiDB.getConnection();
             String readallquery = String.format("SELECT * FROM member");
             PreparedStatement preparedStatement = koneksi.prepareStatement(readallquery);
-            preparedStatement.executeUpdate();
+            
+            this.rs = preparedStatement.executeQuery();
             return this.rs;
         }catch (ClassNotFoundException | SQLException ex){
            System.out.println("Terdapat Error : "+ex.getMessage());  
