@@ -68,6 +68,11 @@ public class LoginForm extends javax.swing.JFrame {
                 InputUsernameMouseClicked(evt);
             }
         });
+        InputUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputUsernameActionPerformed(evt);
+            }
+        });
 
         inputPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -178,6 +183,10 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_inputPasswordMouseClicked
+
+    private void InputUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputUsernameActionPerformed
 
     /**
      * @param args the command line arguments

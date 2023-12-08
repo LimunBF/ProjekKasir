@@ -27,29 +27,38 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LabelNama" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
-                                  <Component id="LabelNO" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LabelKOde" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="LabelEmail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="LabelDomisili" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="InputKode" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="InputNama" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="InputHandphone" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="InputDomisili" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="InputEmail" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnSimpanMember" min="-2" pref="88" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="88" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="usernameAdmin" min="-2" pref="88" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="LabelNama" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                                          <Component id="LabelNO" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LabelKOde" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="LabelEmail" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="LabelDomisili" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="InputKode" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="InputNama" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="InputHandphone" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="InputDomisili" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="InputEmail" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -79,7 +88,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="usernameAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
@@ -259,6 +273,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditMemberActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Selamat datang, "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="usernameAdmin">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="text"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
