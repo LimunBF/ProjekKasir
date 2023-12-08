@@ -11,6 +11,8 @@ import databaseMember.TampilDataMember;
 import databaseMember.DeleteMember;
 import databaseMember.UpdateMember;
 import databaseMember.CreateMember;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ACER
@@ -26,10 +28,11 @@ public class DataMember extends javax.swing.JFrame {
     public DataMember() {
         initComponents();
         String[] columns = {
-          "Mama Member", 
-          "No HP", 
-          "Email Member", 
-          "Doomisili Member",
+        "Kode Member",
+        "Nama Member", 
+        "No HP", 
+        "Email", 
+        "Domisili",
         };   
         DefaultTableModel modeltabel = new DefaultTableModel(columns, 0) {
             @Override
@@ -52,7 +55,6 @@ public class DataMember extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.out.println("Pesan Error : " + e.getMessage());
         }
-
         setVisible(true);
     }
    
@@ -127,23 +129,16 @@ public class DataMember extends javax.swing.JFrame {
 
         tabelDataMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tabelDataMember.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabelDataMemberMousePressed(evt);
@@ -302,16 +297,17 @@ public class DataMember extends javax.swing.JFrame {
         }
 
         DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
-
-        try{
-            for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
+        
+        try {
+            for (var i = tabel.getRowCount() - 1; i >= 0; i--) {
                 tabel.removeRow(i);
             }
-            while(rs.next()){
-                tabel.addRow(new Object[]{rs.getString("kode_barang"), rs.getString("nama_barang"),rs.getString("harga_barang"), rs.getString("jumlah_barang")});
+            while (rs.next()) {
+                tabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"),
+                        rs.getInt("no_hp"), rs.getString("email"), rs.getString("domisili")});
             }
-
-        }catch(SQLException e){
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, "Error while processing SQL results: " + e.getMessage());
             System.out.println("Pesan Error : " + e.getMessage());
         }
     }//GEN-LAST:event_btnCariActionPerformed
@@ -319,33 +315,32 @@ public class DataMember extends javax.swing.JFrame {
     private void btnSimpanMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMemberActionPerformed
         // TODO add your handling code here:
         try {
-            String Namamember = InputNama.getText();
-            String Emailmember = InputEmail.getText();
-            String Domisilimember = InputDomisili.getText();
-            String cleanedPhoneNumber = InputHandphone.getText().replaceAll("[^\\d]", "");
+          String Namamember = InputNama.getText();
+          String Emailmember = InputEmail.getText();
+          String Domisilimember = InputDomisili.getText();
+          String cleanedPhoneNumber = InputHandphone.getText();
 
-            try {
-                int NoHPmember = Integer.parseInt(cleanedPhoneNumber);
-                // rest of your code...
-            } catch (NumberFormatException e) {
-                // Handle the case where the input is not a valid integer
-                e.printStackTrace();
-            }          
+          if (!Namamember.isEmpty() && !Emailmember.isEmpty() && !Domisilimember.isEmpty() && !cleanedPhoneNumber.isEmpty()) {
+              if (!cleanedPhoneNumber.matches("\\d+")) { // Check if it contains only digits
+                  JOptionPane.showMessageDialog(rootPane, "Invalid phone number format. Please enter a valid number.");
+                  return; // Stop further processing if the phone number has non-digit characters
+              }
 
-            // Retrieve the latest ID from the database
-            int latestId = tampilData.getLatestMemberId();
-
-            // Increment the ID for the new member
-            int newId = latestId + 1;
-
-            // Set the new ID in the InputKode field
-            InputKode.setText(String.valueOf(newId));
-
-            // Create the new member with the incremented ID
-            CreateMember.CreateDataMember(Namamember, HAND_CURSOR, Emailmember, Domisilimember, rootPane);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }         
+              try {
+                  int NoHPmember = Integer.parseInt(cleanedPhoneNumber);
+                  // Continue with the rest of your code, e.g., calling CreateMember.CreateDataMember
+                  CreateMember.CreateDataMember(Namamember, NoHPmember, Emailmember, Domisilimember, rootPane);
+                  refreshTable();
+              } catch (NumberFormatException e) {
+                  JOptionPane.showMessageDialog(rootPane, "Invalid phone number format. Please enter a valid number.");
+                  e.printStackTrace();
+              }
+          } else {
+              JOptionPane.showMessageDialog(rootPane, "Please fill in all the input fields.");
+          }
+      } catch (HeadlessException e) {
+          e.printStackTrace();
+      }         
     }//GEN-LAST:event_btnSimpanMemberActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
@@ -357,16 +352,32 @@ public class DataMember extends javax.swing.JFrame {
 
     private void btnHapusMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusMemberActionPerformed
         // TODO add your handling code here:
-        DeleteMember deleteData = new DeleteMember();
-        DeleteMember.deleteDataMember(SOMEBITS, rootPane);
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
-        tabel.removeRow(selectedRow);
-        
-        InputKode.setText("");
-        InputNama.setText("");
-        InputHandphone.setText("");
-        InputEmail.setText("");
-        InputDomisili.setText("");
+        // Get the selected row index from the displayed table
+        int selectedRow = tabelDataMember.getSelectedRow();
+
+        // Check if a row is selected
+        if (selectedRow != -1) {
+            // Get the member ID from the first column of the selected row
+            String memberIdToDeleteString = (String) tabelDataMember.getValueAt(selectedRow, 0);
+            int memberIdToDelete = Integer.parseInt(memberIdToDeleteString);
+
+
+            // Call the deleteDataMember method with the extracted member ID
+            DeleteMember.deleteDataMember(memberIdToDelete, rootPane);
+
+            // Remove the selected row from the table
+            DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
+            tabel.removeRow(selectedRow);
+
+            InputKode.setText("");
+            InputNama.setText("");
+            InputHandphone.setText("");
+            InputEmail.setText("");
+            InputDomisili.setText("");
+            refreshTable();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete.");
+        }
     }//GEN-LAST:event_btnHapusMemberActionPerformed
 
     private void btnEditMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMemberActionPerformed

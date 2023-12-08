@@ -5,6 +5,7 @@
 package frame;
 
 import databaseAdmin.CRUDAdmin;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Limun
@@ -149,9 +150,14 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_CreateAdminActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
         String username = InputUsername.getText();
         String password = new String(inputPassword.getPassword());
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Please fill in both username and password.");
+            return; // Exit the method if either field is empty
+        }
 
         boolean isValid = CRUDAdmin.checkCredentials(username, password);
 
@@ -162,7 +168,7 @@ public class LoginForm extends javax.swing.JFrame {
             dispose();
         } else {
             // Do something when login fails
-            System.out.println("Invalid Username or Password");
+            JOptionPane.showMessageDialog(rootPane, "Invalid Username or Password");
         }
     }//GEN-LAST:event_LoginButtonActionPerformed
 

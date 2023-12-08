@@ -48,26 +48,4 @@ public class TampilDataMember {
             }
         return this.rs;
     }
-    
-    public int getLatestMemberId() {
-        int latestId = 0;
-
-        try {
-            Connection koneksi = KoneksiDB.getConnection();
-            String getLinesquery = "SELECT MAX(id_member) as latest_id FROM member";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(getLinesquery);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                latestId = resultSet.getInt("latest_id");
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return latestId;
-    }
 }

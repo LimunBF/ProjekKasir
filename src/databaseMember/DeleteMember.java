@@ -21,7 +21,7 @@ public class DeleteMember {
             Connection koneksi = KoneksiDB.getConnection();
 
             // Modify the DELETE query based on your database schema
-            String deleteQuery = String.format("DELETE FROM barang WHERE id_member = \"%s\";", id_member);
+            String deleteQuery = String.format("DELETE FROM member WHERE id_member = \"%s\";", id_member);
             PreparedStatement preparedStatement = koneksi.prepareStatement(deleteQuery);
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
