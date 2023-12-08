@@ -88,12 +88,10 @@ public class DataMember extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LabelKOde = new javax.swing.JLabel();
         LabelNama = new javax.swing.JLabel();
         LabelNO = new javax.swing.JLabel();
         LabelEmail = new javax.swing.JLabel();
         LabelDomisili = new javax.swing.JLabel();
-        InputKode = new javax.swing.JTextField();
         InputNama = new javax.swing.JTextField();
         InputHandphone = new javax.swing.JTextField();
         InputEmail = new javax.swing.JTextField();
@@ -110,8 +108,6 @@ public class DataMember extends javax.swing.JFrame {
         usernameAdmin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        LabelKOde.setText("KODE MEMBER");
 
         LabelNama.setText("NAMA MEMBER");
 
@@ -208,12 +204,10 @@ public class DataMember extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(LabelNama, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(LabelNO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(LabelKOde)
                                             .addComponent(LabelEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(LabelDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(InputKode)
                                             .addComponent(InputNama)
                                             .addComponent(InputHandphone)
                                             .addComponent(InputDomisili)
@@ -246,10 +240,7 @@ public class DataMember extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelKOde)
-                            .addComponent(InputKode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelNama)
                             .addComponent(InputNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -448,11 +439,9 @@ public class DataMember extends javax.swing.JFrame {
     private javax.swing.JTextField InputDomisili;
     private javax.swing.JTextField InputEmail;
     private javax.swing.JTextField InputHandphone;
-    private javax.swing.JTextField InputKode;
     private javax.swing.JTextField InputNama;
     private javax.swing.JLabel LabelDomisili;
     private javax.swing.JLabel LabelEmail;
-    private javax.swing.JLabel LabelKOde;
     private javax.swing.JLabel LabelNO;
     private javax.swing.JLabel LabelNama;
     private javax.swing.JButton btnCari;

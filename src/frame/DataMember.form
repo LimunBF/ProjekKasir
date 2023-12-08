@@ -44,13 +44,11 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="LabelNama" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                                           <Component id="LabelNO" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="LabelKOde" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="LabelEmail" alignment="0" max="32767" attributes="0"/>
                                           <Component id="LabelDomisili" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="InputKode" alignment="0" max="32767" attributes="0"/>
                                           <Component id="InputNama" alignment="0" max="32767" attributes="0"/>
                                           <Component id="InputHandphone" alignment="0" max="32767" attributes="0"/>
                                           <Component id="InputDomisili" alignment="0" max="32767" attributes="0"/>
@@ -97,11 +95,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="243" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LabelKOde" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="InputKode" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="LabelNama" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="InputNama" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -143,11 +137,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="LabelKOde">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="KODE MEMBER"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="LabelNama">
       <Properties>
         <Property name="text" type="java.lang.String" value="NAMA MEMBER"/>
@@ -167,8 +156,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="DOMISILI"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="InputKode">
     </Component>
     <Component class="javax.swing.JTextField" name="InputNama">
     </Component>
