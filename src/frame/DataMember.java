@@ -319,7 +319,7 @@ public class DataMember extends javax.swing.JFrame {
     private void btnSimpanMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanMemberActionPerformed
         // TODO add your handling code here:
         try {
-            String Namamember = InputNama.getText();;
+            String Namamember = InputNama.getText();
             String Emailmember = InputEmail.getText();
             String Domisilimember = InputDomisili.getText();
             String cleanedPhoneNumber = InputHandphone.getText().replaceAll("[^\\d]", "");
