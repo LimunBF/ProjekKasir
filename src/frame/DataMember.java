@@ -55,9 +55,7 @@ public class DataMember extends javax.swing.JFrame {
 
         setVisible(true);
     }
-    
-    
-    
+   
     private void refreshTable() {
         DefaultTableModel tabelData = (DefaultTableModel) tabelDataMember.getModel();
         tabelData.setRowCount(0); // Clear the table
