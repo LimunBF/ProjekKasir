@@ -69,7 +69,6 @@ public class CreateAdmin extends javax.swing.JFrame {
             }
         });
 
-        InputRealPassword.setText("jPasswordField1");
         InputRealPassword.setMinimumSize(new java.awt.Dimension(64, 26));
         InputRealPassword.setName(""); // NOI18N
 
@@ -145,24 +144,38 @@ public class CreateAdmin extends javax.swing.JFrame {
         try {
             String username = InputUsername.getText();
             String password = new String(InputRealPassword.getPassword());
-            
 
-            // Check if both username and password are not empty
             if (!username.isEmpty() && !password.isEmpty()) {
-                CRUDAdmin.createDataAdmin(username, password,  rootPane);
-                
-                dispose();
-                LoginForm loginForm = new LoginForm();
-                loginForm.setVisible(true);
+                // Check if the username is valid (e.g., no spaces or special characters)
+                if (!isValidUsername(username)) {
+                    JOptionPane.showMessageDialog(rootPane, "Invalid username. Please choose a different username without spaces or special characters.");
+                } else {
+                    if (CRUDAdmin.exists(username)) {
+                        JOptionPane.showMessageDialog(rootPane, "Username already exists. Please choose a different username.");
+                    } else {
+                        CRUDAdmin.createDataAdmin(username, password,  rootPane);
+
+                        // Successfully created account, show success message and navigate to login form
+                        JOptionPane.showMessageDialog(rootPane, "Account created successfully. You can now log in.");
+                        dispose();
+                        LoginForm loginForm = new LoginForm();
+                        loginForm.setVisible(true);
+                    }
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Please fill in both username and password.");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "An error occurred. Please try again.");
         }
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
+    private boolean isValidUsername(String username) {
+    // Customize this method for additional username validation rules
+        return !username.isEmpty() && !username.matches(".*\\s.*") && !username.matches(".*[^a-zA-Z0-9].*");
+    }
+    
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
             LoginForm login = new LoginForm();

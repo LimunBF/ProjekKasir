@@ -161,7 +161,6 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="InputRealPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[64, 26]"/>
             </Property>
