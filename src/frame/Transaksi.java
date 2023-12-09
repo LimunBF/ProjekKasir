@@ -8,14 +8,55 @@ package frame;
  *
  * @author ACER
  */
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import databaseTransaksi.TampilTransaksiData;
+
 public class Transaksi extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Transaksi
      */
+    
+    TampilTransaksiData tampilData = new TampilTransaksiData();
+    int selectedRow = -1;
+    
     public Transaksi() {
         initComponents();
-    }
+        String[] columns = {
+        "No",
+        "Kode Barang", 
+        "Nama Barang", 
+        "Harga Barang", 
+        "QTY",
+        "Total Harga",
+        };   
+        DefaultTableModel modeltabel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        this.tblTransaksi.setModel(modeltabel);
+        ResultSet rs = tampilData.tampilkanDataSemuaTransaksi();
+        
+        try {
+            int i = 0;
+            if (rs != null) {  // Add this check
+                while (rs.next()) {
+                    modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"),
+                        rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
+                    i++;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        setVisible(true);
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
