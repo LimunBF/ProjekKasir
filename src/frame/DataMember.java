@@ -115,14 +115,14 @@ public class DataMember extends javax.swing.JFrame {
 
         tabelDataMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Kode Member", "Nama", "No. HP", "Email", "Domisili"
+                "#", "Kode Member", "Nama", "No. HP", "Email", "Domisili"
             }
         ));
         tabelDataMember.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -169,7 +169,7 @@ public class Transaksi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No.", "Kode Barang", "Nama Barang", "Harga Barang", "QTY", "Total Harga"
+                "#", "Kode Barang", "Nama Barang", "Harga Barang", "QTY", "Total Harga"
             }
         ));
         jScrollPane1.setViewportView(tblTransaksi);

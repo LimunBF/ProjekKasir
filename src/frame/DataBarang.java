@@ -198,17 +198,17 @@ public class DataBarang extends javax.swing.JFrame {
 
         tabelDataBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Kode Barang", "Nama Barang", "Harga", "Jumlah"
+                "#", "Kode Barang", "Nama Barang", "Harga", "Jumlah"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                true, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
