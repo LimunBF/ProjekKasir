@@ -26,15 +26,28 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        usernameAdmin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btnBarang = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnMember = new javax.swing.JButton();
         btnTransaksi = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        usernameAdmin = new javax.swing.JLabel();
         btnLogout = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        usernameAdmin.setText("username");
+        jPanel1.add(usernameAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 570, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Selamat Datang");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnBarang.setText("BARANG");
         btnBarang.addActionListener(new java.awt.event.ActionListener() {
@@ -42,6 +55,16 @@ public class Menu extends javax.swing.JFrame {
                 btnBarangActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 92, 78));
+
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setLabel("DAFTAR \nTRANSAKSI\n");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 150, 78));
 
         btnMember.setText("MEMBER");
         btnMember.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +72,7 @@ public class Menu extends javax.swing.JFrame {
                 btnMemberActionPerformed(evt);
             }
         });
+        jPanel1.add(btnMember, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 92, 78));
 
         btnTransaksi.setText("TRANSAKSI");
         btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
@@ -56,69 +80,12 @@ public class Menu extends javax.swing.JFrame {
                 btnTransaksiActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Selamat Datang");
-
-        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        usernameAdmin.setText("username");
+        jPanel1.add(btnTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, -1, 78));
 
         btnLogout.setText("LOGOUT");
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
 
-        jButton1.setText("DAFTAR TRANSAKSI");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(usernameAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(btnLogout))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(259, 259, 259)
-                                    .addComponent(btnTransaksi))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(btnMember, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 190, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(usernameAdmin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMember, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(162, 162, 162)
-                .addComponent(btnLogout)
-                .addContainerGap())
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,6 +127,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnTransaksi;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel usernameAdmin;
     // End of variables declaration//GEN-END:variables
 }
