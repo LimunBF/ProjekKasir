@@ -39,6 +39,10 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1131131313, 1313131313));
+        setMinimumSize(new java.awt.Dimension(506, 283));
+        setPreferredSize(new java.awt.Dimension(611, 343));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LoginText.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
