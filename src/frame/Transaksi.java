@@ -8,10 +8,17 @@ package frame;
  *
  * @author ACER
  */
+import databaseBarang.TampilDataBarang;
+import databaseMember.TampilDataMember;
+import databaseTransaksi.CreateDbTransaksi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import databaseTransaksi.TampilTransaksiData;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class Transaksi extends javax.swing.JFrame {
     
@@ -22,9 +29,26 @@ public class Transaksi extends javax.swing.JFrame {
     
     TampilTransaksiData tampilData = new TampilTransaksiData();
     int selectedRow = -1;
+    int nomorTabel = 1;
+    Boolean isMember = false;
+    int hargaKeseluruhan = 0;
+    int diskon = 0;
+    int total = 0;
+    String nama;
     
-    public Transaksi() {
+    public Transaksi(String nama) {
         initComponents();
+        this.nama = nama;
+        this.usernameAdmin.setText(this.nama);
+        txtKodeBarang.getDocument().addDocumentListener(kodeBarangListener);
+        txtJumlahBarang.getDocument().addDocumentListener(totalHargaListener);
+        txtKodeMember.getDocument().addDocumentListener(kodeMemberListener);
+        txtNamaBarang.setFocusable(false);
+        txtHargaBarang.setFocusable(false);
+        txtTotalHargaBarang.setFocusable(false);
+        txtSubtotal.setFocusable(false);
+        txtDiskon.setFocusable(false);
+        txtTotal.setFocusable(false);
         String[] columns = {
         "No",
         "Kode Barang", 
@@ -41,22 +65,135 @@ public class Transaksi extends javax.swing.JFrame {
         };
         
         this.tblTransaksi.setModel(modeltabel);
-        ResultSet rs = tampilData.tampilkanDataSemuaTransaksi();
+//        ResultSet rs = tampilData.tampilkanDataSemuaTransaksi();
+//        
+//        try {
+//            int i = 0;
+//            if (rs != null) {  // Add this check
+//                while (rs.next()) {
+//                    modeltabel.addRow(new Object[]{i, rs.getString("kode_barang"), txtNamaBarang.getText(),
+//                        rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
+//                    i++;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            System.out.println("Pesan Error : " + e.getMessage());
+//        }
+        setVisible(true);
+    }
+    
+    DocumentListener kodeBarangListener = new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent evt) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+        void onChange() {
+            String kodeBarang = txtKodeBarang.getText();
+            TampilDataBarang dbBarang = new TampilDataBarang();
+            ResultSet rs = dbBarang.tampilkanDataBarang(kodeBarang);
+            try {
+                if(rs.next()) {
+                    System.out.println(rs.getString("nama_barang"));
+                    String namaBarang = rs.getString("nama_barang");
+                    String hargaBarang = rs.getString("harga_barang");
+                    txtNamaBarang.setText(namaBarang);
+                    txtHargaBarang.setText(hargaBarang);
+                    txtJumlahBarang.requestFocus();
+                } else {
+                    txtNamaBarang.setText("");
+                    txtHargaBarang.setText("");
+                    txtTotalHargaBarang.setText("");
+                }
+            } catch (SQLException e) {
+                
+            }
+        }
+    };
+    
+    DocumentListener totalHargaListener = new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            onChange();
+//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
         
-        try {
-            int i = 0;
-            if (rs != null) {  // Add this check
-                while (rs.next()) {
-                    modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"),
-                        rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
-                    i++;
+        void onChange() {
+            if(txtJumlahBarang.getText().length() > 0) {
+                Integer jumlahBarang = Integer.valueOf(txtJumlahBarang.getText());
+                Integer hargaBarang = Integer.valueOf(txtHargaBarang.getText());
+                String totalHarga = String.valueOf(hargaBarang * jumlahBarang);
+                txtTotalHargaBarang.setText(totalHarga); 
+            } else {
+                txtTotalHargaBarang.setText("0");
+            }
+        }
+};
+    DocumentListener kodeMemberListener = new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                onChange();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                onChange();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                onChange();
+            }
+            
+            void onChange() {
+                TampilDataMember dbMember = new TampilDataMember();
+                ResultSet rs = dbMember.tampilkanDataMember(txtKodeMember.getText());
+                try {
+                    isMember = rs.next();
+                    if(isMember) {
+                        diskon = hargaKeseluruhan/10;
+                        txtDiskon.setText("(10%) "+diskon);
+                        txtTotal.setText(""+(hargaKeseluruhan-diskon));
+                    } else {
+                        txtDiskon.setText("");
+                        txtTotal.setText(""+hargaKeseluruhan);
+                    }
+                } catch (SQLException e) {
+                    isMember = false;
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("Pesan Error : " + e.getMessage());
-        }
-        setVisible(true);
-    }    
+        };
+    
+    private void refreshTable() {
+        DefaultTableModel tabelData = (DefaultTableModel) tblTransaksi.getModel();
+        tabelData.setRowCount(0); // Clear the table
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,7 +207,6 @@ public class Transaksi extends javax.swing.JFrame {
         btnKembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        txtFaktur = new javax.swing.JTextField();
         Faktur = new javax.swing.JLabel();
         txtKodeBarang = new javax.swing.JTextField();
         txtTotalHargaBarang = new javax.swing.JTextField();
@@ -93,20 +229,32 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         usernameAdmin = new javax.swing.JLabel();
+        btnInput = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnKembali.setText("KEMBALI");
+        btnKembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKembaliActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Rp.");
+        jLabel1.setText("Rp0");
 
         Faktur.setText("Faktur");
 
         txtKodeBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKodeBarangActionPerformed(evt);
+            }
+        });
+
+        txtNamaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNamaBarangActionPerformed(evt);
             }
         });
 
@@ -126,13 +274,12 @@ public class Transaksi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtFaktur, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtKodeBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                        .addComponent(txtNamaBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtHargaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,7 +296,6 @@ public class Transaksi extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFaktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Faktur)
                     .addComponent(txtKodeMember, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -175,6 +321,11 @@ public class Transaksi extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblTransaksi);
 
         btnBayar.setText("Bayar");
+        btnBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBayarActionPerformed(evt);
+            }
+        });
 
         txtDiskon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +347,13 @@ public class Transaksi extends javax.swing.JFrame {
         usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         usernameAdmin.setText("username");
 
+        btnInput.setText("Tambah");
+        btnInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,8 +361,8 @@ public class Transaksi extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,6 +386,10 @@ public class Transaksi extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBayar)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +403,9 @@ public class Transaksi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                .addComponent(btnInput)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -276,44 +440,59 @@ public class Transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiskonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+          String kodeMember = txtKodeMember.getText();
+          String kodeBarang = txtKodeBarang.getText();
+          String namaBarang = txtNamaBarang.getText();
+          String hargaBarang = txtHargaBarang.getText();
+          String qty = txtJumlahBarang.getText();
+          String totalHarga = txtTotalHargaBarang.getText();
+          if (!kodeBarang.isEmpty() && !namaBarang.isEmpty() && !hargaBarang.isEmpty() && !qty.isEmpty() && !totalHarga.isEmpty()) {
+                DefaultTableModel tabelData = (DefaultTableModel) tblTransaksi.getModel();
+                tabelData.addRow(new Object[]{nomorTabel, kodeBarang, namaBarang, hargaBarang, qty, totalHarga});
+                hargaKeseluruhan = Integer.valueOf(jLabel1.getText().substring(2))+Integer.valueOf(totalHarga);
+                jLabel1.setText("Rp"+hargaKeseluruhan);
+                txtSubtotal.setText(""+hargaKeseluruhan);
+                if(isMember) {  
+                    diskon = hargaKeseluruhan/10;
+                    txtDiskon.setText("(10%) "+diskon);
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Transaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+                total = hargaKeseluruhan - diskon;
+                txtTotal.setText(""+total);
+                nomorTabel++;
+          } else {
+              JOptionPane.showMessageDialog(rootPane, "Please fill in all the input fields.");
+          }
+      } catch (HeadlessException e) {
+          e.printStackTrace();
+      }   
+    }//GEN-LAST:event_btnInputActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Transaksi().setVisible(true);
-            }
-        });
-    }
+    private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
+        Menu menu = new Menu(nama);
+        menu.setVisible(true);
+        txtKodeBarang.getDocument().removeDocumentListener(kodeBarangListener);
+        txtJumlahBarang.getDocument().removeDocumentListener(totalHargaListener);
+        dispose();
+    }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void txtNamaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaBarangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaBarangActionPerformed
+
+    private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
+        // TODO add your handling code here:
+        // 1. Tampilkan jDialog buat hitung kembalian
+        // 2. Generate file pdf
+        // 3. Simpan file pdf di dalam folder yang ditentuka C:/Download/Riwayat Transaksi/[id_transaksi].pdf
+        // 4. Simpan data-data di atas kedalam tabel transaksi
+    }//GEN-LAST:event_btnBayarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Faktur;
     private javax.swing.JButton btnBayar;
+    private javax.swing.JButton btnInput;
     private javax.swing.JButton btnKembali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -328,7 +507,6 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JTable tblTransaksi;
     private javax.swing.JTextField txtBayar;
     private javax.swing.JTextField txtDiskon;
-    private javax.swing.JTextField txtFaktur;
     private javax.swing.JTextField txtHargaBarang;
     private javax.swing.JTextField txtJumlahBarang;
     private javax.swing.JTextField txtKodeBarang;

@@ -48,13 +48,13 @@ public class DaftarTransaksi extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "#", "No. Faktur", "Tanggal", "Member", "Nominal"
+                "#", "No. Faktur", "Tanggal", "Barang", "Jumlah", "Member", "Nominal"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

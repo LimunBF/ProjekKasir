@@ -127,7 +127,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         if (isValid) {
             // Do something when login is successful
-            Menu menuFrame = new Menu();
+            Menu menuFrame = new Menu(username);
             menuFrame.setVisible(true);
             dispose();
         } else {

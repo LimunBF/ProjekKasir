@@ -10,11 +10,16 @@ package frame;
  */
 public class Menu extends javax.swing.JFrame {
 
+    private String nama;
+
     /**
      * Creates new form Menu
+     * @param nama
      */
-    public Menu() {
+    public Menu(String nama) {
         initComponents();
+        this.nama = nama;
+        this.usernameAdmin.setText(" "+this.nama);
     }
 
     /**
@@ -93,21 +98,21 @@ public class Menu extends javax.swing.JFrame {
     private void btnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangActionPerformed
         // TODO add your handling code here:
         dispose();
-        DataBarang barang = new DataBarang();
+        DataBarang barang = new DataBarang(nama);
         barang.setVisible(true);
     }//GEN-LAST:event_btnBarangActionPerformed
 
     private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
         // TODO add your handling code here:\
         dispose();
-        DataMember member = new DataMember();
+        DataMember member = new DataMember(this.nama);
         member.setVisible(true);
     }//GEN-LAST:event_btnMemberActionPerformed
 
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
         // TODO add your handling code here:
         dispose();
-        Transaksi transaksi = new Transaksi();
+        Transaksi transaksi = new Transaksi(this.nama);
         transaksi.setVisible(true);
     }//GEN-LAST:event_btnTransaksiActionPerformed
 

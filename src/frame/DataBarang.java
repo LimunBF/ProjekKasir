@@ -24,12 +24,16 @@ public class DataBarang extends javax.swing.JFrame {
      * Creates new form DataBarang
      */
     
+    String nama;
+    
     TampilDataBarang tampilData = new TampilDataBarang();
     int selectedRow = -1;
     
     
-    public DataBarang() {
+    public DataBarang(String nama) {
         initComponents();
+        this.nama = nama;
+        this.usernameAdmin.setText(" "+this.nama);
         String[] columns = {
           "Kode Barang", 
           "Nama Barang", 
@@ -311,7 +315,7 @@ public class DataBarang extends javax.swing.JFrame {
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
-        Menu menu = new Menu();
+        Menu menu = new Menu(nama);
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
