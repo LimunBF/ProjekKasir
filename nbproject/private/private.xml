@@ -5,7 +5,7 @@
             <url>src/frame/DataMember.java</url>
             <bookmark id="1">
                 <name/>
-                <line>285</line>
+                <line>329</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,11 +15,13 @@
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/DataMember.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/Transaksi.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseMember/UpdateMember.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/DataBarang.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/LoginForm.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/databaseTransaksi/TampilTransaksiData.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/CreateAdmin.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/PopUpLogout.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/PopUpHapus.java</file>
+            <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/DaftarTransaksi.java</file>
             <file>file:/D:/Semester%203/Praktikum%20PBO/ProjekKasir/src/frame/Menu.java</file>
         </group>
     </open-files>
