@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import databaseTransaksi.TampilTransaksiData;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,6 +37,7 @@ public class Transaksi extends javax.swing.JFrame {
     int diskon = 0;
     int total = 0;
     String nama;
+    int jumlahBarang = 0;
     
     public Transaksi(String nama) {
         initComponents();
@@ -86,19 +89,16 @@ public class Transaksi extends javax.swing.JFrame {
         @Override
         public void insertUpdate(DocumentEvent evt) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         @Override
         public void removeUpdate(DocumentEvent e) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         @Override
         public void changedUpdate(DocumentEvent e) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
         void onChange() {
             String kodeBarang = txtKodeBarang.getText();
@@ -106,13 +106,14 @@ public class Transaksi extends javax.swing.JFrame {
             ResultSet rs = dbBarang.tampilkanDataBarang(kodeBarang);
             try {
                 if(rs.next()) {
-                    System.out.println(rs.getString("nama_barang"));
                     String namaBarang = rs.getString("nama_barang");
                     String hargaBarang = rs.getString("harga_barang");
+                    jumlahBarang = rs.getInt("jumlah_barang");
                     txtNamaBarang.setText(namaBarang);
                     txtHargaBarang.setText(hargaBarang);
                     txtJumlahBarang.requestFocus();
                 } else {
+                    jumlahBarang = 0;
                     txtNamaBarang.setText("");
                     txtHargaBarang.setText("");
                     txtTotalHargaBarang.setText("");
@@ -127,19 +128,16 @@ public class Transaksi extends javax.swing.JFrame {
         @Override
         public void insertUpdate(DocumentEvent e) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         @Override
         public void removeUpdate(DocumentEvent e) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
 
         @Override
         public void changedUpdate(DocumentEvent e) {
             onChange();
-//            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         }
         
         void onChange() {
@@ -178,6 +176,7 @@ public class Transaksi extends javax.swing.JFrame {
                         diskon = hargaKeseluruhan/10;
                         txtDiskon.setText("(10%) "+diskon);
                         txtTotal.setText(""+(hargaKeseluruhan-diskon));
+                        total = hargaKeseluruhan - diskon;
                     } else {
                         txtDiskon.setText("");
                         txtTotal.setText(""+hargaKeseluruhan);
@@ -204,6 +203,19 @@ public class Transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogKonfirmasi = new javax.swing.JDialog();
+        lbltotalharga = new java.awt.Label();
+        txttitle = new java.awt.Label();
+        lbotalharga1 = new java.awt.Label();
+        lblkembalian = new java.awt.Label();
+        btniya = new javax.swing.JButton();
+        btntidak = new javax.swing.JButton();
+        txttotalharga = new java.awt.Label();
+        txtjumlahkembali = new java.awt.Label();
+        txtuangpembeli = new java.awt.Label();
+        dialogError = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        btnError = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -230,6 +242,132 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         usernameAdmin = new javax.swing.JLabel();
         btnInput = new javax.swing.JButton();
+
+        lbltotalharga.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        lbltotalharga.setText("Uang Pembeli");
+
+        txttitle.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        txttitle.setName(""); // NOI18N
+        txttitle.setText("Konfirmasi Pembayaran");
+
+        lbotalharga1.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        lbotalharga1.setText("Total Harga");
+
+        lblkembalian.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        lblkembalian.setText("Jumlah Kembalian");
+
+        btniya.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        btniya.setText("IYA");
+        btniya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btniyaActionPerformed(evt);
+            }
+        });
+
+        btntidak.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        btntidak.setText("TIDAK");
+        btntidak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntidakActionPerformed(evt);
+            }
+        });
+
+        txttotalharga.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txttotalharga.setText("0");
+
+        txtjumlahkembali.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txtjumlahkembali.setText("0");
+
+        txtuangpembeli.setFont(new java.awt.Font("DialogInput", 1, 18)); // NOI18N
+        txtuangpembeli.setText("0");
+
+        javax.swing.GroupLayout dialogKonfirmasiLayout = new javax.swing.GroupLayout(dialogKonfirmasi.getContentPane());
+        dialogKonfirmasi.getContentPane().setLayout(dialogKonfirmasiLayout);
+        dialogKonfirmasiLayout.setHorizontalGroup(
+            dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogKonfirmasiLayout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblkembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbotalharga1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbltotalharga, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txttotalharga, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtjumlahkembali, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtuangpembeli, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(206, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogKonfirmasiLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogKonfirmasiLayout.createSequentialGroup()
+                        .addComponent(txttitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(264, 264, 264))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogKonfirmasiLayout.createSequentialGroup()
+                        .addComponent(btniya, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(btntidak, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(297, 297, 297))))
+        );
+        dialogKonfirmasiLayout.setVerticalGroup(
+            dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogKonfirmasiLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(txttitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbotalharga1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalharga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbltotalharga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtuangpembeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblkembalian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtjumlahkembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(dialogKonfirmasiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btntidak, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btniya, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(295, Short.MAX_VALUE))
+        );
+
+        lbltotalharga.getAccessibleContext().setAccessibleName("Total Harga :");
+
+        jLabel9.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel9.setText("Uang Pembayaran Kurang");
+
+        btnError.setText("OK");
+        btnError.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnErrorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogErrorLayout = new javax.swing.GroupLayout(dialogError.getContentPane());
+        dialogError.getContentPane().setLayout(dialogErrorLayout);
+        dialogErrorLayout.setHorizontalGroup(
+            dialogErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogErrorLayout.createSequentialGroup()
+                .addGroup(dialogErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogErrorLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel9))
+                    .addGroup(dialogErrorLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(btnError, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+        dialogErrorLayout.setVerticalGroup(
+            dialogErrorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogErrorLayout.createSequentialGroup()
+                .addContainerGap(124, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(49, 49, 49)
+                .addComponent(btnError)
+                .addGap(83, 83, 83))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -442,13 +580,17 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         try {
-          String kodeMember = txtKodeMember.getText();
           String kodeBarang = txtKodeBarang.getText();
           String namaBarang = txtNamaBarang.getText();
           String hargaBarang = txtHargaBarang.getText();
           String qty = txtJumlahBarang.getText();
           String totalHarga = txtTotalHargaBarang.getText();
           if (!kodeBarang.isEmpty() && !namaBarang.isEmpty() && !hargaBarang.isEmpty() && !qty.isEmpty() && !totalHarga.isEmpty()) {
+              if(jumlahBarang < Integer.parseInt(qty)) {
+                  JOptionPane.showMessageDialog(rootPane, "Stok Barang Tidak Cukup");
+              } else {
+                TampilTransaksiData updbrg = new TampilTransaksiData();
+                updbrg.updatebarang(jumlahBarang-(Integer.parseInt(qty)), (Integer.valueOf(kodeBarang)));
                 DefaultTableModel tabelData = (DefaultTableModel) tblTransaksi.getModel();
                 tabelData.addRow(new Object[]{nomorTabel, kodeBarang, namaBarang, hargaBarang, qty, totalHarga});
                 hargaKeseluruhan = Integer.valueOf(jLabel1.getText().substring(2))+Integer.valueOf(totalHarga);
@@ -461,6 +603,16 @@ public class Transaksi extends javax.swing.JFrame {
                 total = hargaKeseluruhan - diskon;
                 txtTotal.setText(""+total);
                 nomorTabel++;
+                
+                // clear form
+                txtKodeBarang.setText("");
+                txtNamaBarang.setText("");
+                txtHargaBarang.setText("");
+                txtTotalHargaBarang.setText("");
+                txtJumlahBarang.setText("");
+                txtKodeBarang.requestFocus();
+              }
+                
           } else {
               JOptionPane.showMessageDialog(rootPane, "Please fill in all the input fields.");
           }
@@ -487,13 +639,62 @@ public class Transaksi extends javax.swing.JFrame {
         // 2. Generate file pdf
         // 3. Simpan file pdf di dalam folder yang ditentuka C:/Download/Riwayat Transaksi/[id_transaksi].pdf
         // 4. Simpan data-data di atas kedalam tabel transaksi
+        
+        int bayar = Integer.parseInt(txtBayar.getText());
+        if(bayar < total) {
+            dialogError.setSize(450, 250);
+            dialogError.setVisible(true);
+        } else {
+            int kembali = bayar - total;
+            txttotalharga.setText("Rp "+total);
+            txtuangpembeli.setText("Rp "+bayar);
+            txtjumlahkembali.setText("Rp "+kembali);
+            dialogKonfirmasi.setSize(600, 600);
+            dialogKonfirmasi.setVisible(true);
+        }
     }//GEN-LAST:event_btnBayarActionPerformed
+
+    private void btniyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniyaActionPerformed
+        CreateDbTransaksi db = new CreateDbTransaksi();
+        ArrayList<HashMap> listBarang = new ArrayList();
+        int qty = 0;
+        int rows = tblTransaksi.getRowCount();
+        for(int i = 0; i < rows; i++) {
+            qty += Integer.parseInt(tblTransaksi.getValueAt(i,4).toString());
+            String kodeBarang = tblTransaksi.getValueAt(i, 1).toString();
+            String jml = tblTransaksi.getValueAt(i, 4).toString();
+            HashMap barang = new HashMap();
+            barang.put("kode_barang", kodeBarang);
+            barang.put("jml", jml);
+            listBarang.add(barang);
+        }
+        
+        String kodeMember = txtKodeMember.getText();
+        System.out.println("Kode Member: "+ kodeMember+ "|| qty" + qty);
+        db.inputDataTransaksi(kodeMember, total, qty, listBarang, rootPane);
+          Menu menu = new Menu(nama);
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btniyaActionPerformed
+
+    private void btnErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnErrorActionPerformed
+        dialogError.setVisible(false);
+    }//GEN-LAST:event_btnErrorActionPerformed
+
+    private void btntidakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntidakActionPerformed
+        dialogKonfirmasi.setVisible(false);
+    }//GEN-LAST:event_btntidakActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Faktur;
     private javax.swing.JButton btnBayar;
+    private javax.swing.JButton btnError;
     private javax.swing.JButton btnInput;
     private javax.swing.JButton btnKembali;
+    private javax.swing.JButton btniya;
+    private javax.swing.JButton btntidak;
+    private javax.swing.JDialog dialogError;
+    private javax.swing.JDialog dialogKonfirmasi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -502,8 +703,12 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private java.awt.Label lblkembalian;
+    private java.awt.Label lbltotalharga;
+    private java.awt.Label lbotalharga1;
     private javax.swing.JTable tblTransaksi;
     private javax.swing.JTextField txtBayar;
     private javax.swing.JTextField txtDiskon;
@@ -515,6 +720,10 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JTextField txtSubtotal;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtTotalHargaBarang;
+    private java.awt.Label txtjumlahkembali;
+    private java.awt.Label txttitle;
+    private java.awt.Label txttotalharga;
+    private java.awt.Label txtuangpembeli;
     private javax.swing.JLabel usernameAdmin;
     // End of variables declaration//GEN-END:variables
 }

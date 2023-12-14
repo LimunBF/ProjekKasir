@@ -4,18 +4,63 @@
  */
 package frame;
 
+import javax.swing.table.DefaultTableModel;
+import databaseTransaksi.TampilTransaksiData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author acer
  */
 public class DaftarTransaksi extends javax.swing.JFrame {
+    private String name;
 
     /**
      * Creates new form DaftarTransaksi
+     * @param name
      */
-    public DaftarTransaksi() {
+    public DaftarTransaksi(String name) {
+        System.out.println(name);
         initComponents();
+        this.name = name;
+        this.usernameAdmin.setText(" "+this.name);
+        
+        String[] columns = {
+        "No",
+        "No Faktur", 
+        "Tanggal", 
+        "Barang", 
+        "Jumlah",
+        "Member",
+        "Nominal",
+        };   
+        DefaultTableModel modeltabel = new DefaultTableModel(columns, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        this.jTable1.setModel(modeltabel);
+        TampilTransaksiData db = new TampilTransaksiData();
+        ResultSet rs = db.tampilkanDataSemuaTransaksi();
+        
+        try {
+            int i = 0;
+            if (rs != null) {  // Add this check
+                while (rs.next()) {
+                    modeltabel.addRow(new Object[]{i+1, rs.getString("faktur"), rs.getString("tanggal_transaksi"), 
+                        rs.getString("id_member"), rs.getString("kode_transaksi_barang"), 
+                        rs.getString("total_harga"),rs.getString("qty")});
+                    i++;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+        setVisible(true);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +113,11 @@ public class DaftarTransaksi extends javax.swing.JFrame {
         });
 
         btnCariTransaksi.setText("Cari");
+        btnCariTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCariTransaksiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,40 +169,34 @@ public class DaftarTransaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariTransaksiActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DaftarTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DaftarTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DaftarTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DaftarTransaksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void btnCariTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariTransaksiActionPerformed
+        // TODO add your handling code here:
+        ResultSet rs;
+        if(!"".equals(txtCariTransaksi.getText())) {
+            TampilTransaksiData db = new TampilTransaksiData();
+            rs = db.tampiltransaksi(Integer.parseInt(txtCariTransaksi.getText()));
+        } else {
+            TampilTransaksiData db = new TampilTransaksiData();
+            rs = db.tampilkanDataSemuaTransaksi();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DaftarTransaksi().setVisible(true);
+        
+        DefaultTableModel tabel = (DefaultTableModel) jTable1.getModel();
+        
+        try{
+            for(var i = tabel.getRowCount() - 1; i >= 0; i--) {
+                tabel.removeRow(i);
             }
-        });
-    }
+            while(rs.next()){
+                int i = 0;
+                tabel.addRow(new Object[]{i+1, rs.getInt("faktur"), rs.getString("tanggal_transaksi"), 
+                        rs.getString("id_member"), rs.getString("kode_transaksi_barang"), 
+                        rs.getString("total_harga"),rs.getString("qty")});
+            }
+            
+        }catch(SQLException e){
+            System.out.println("Pesan Error : " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCariTransaksiActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCariTransaksi;

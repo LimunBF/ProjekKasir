@@ -30,4 +30,38 @@ public class TampilTransaksiData {
             }
         return this.rs;
     }
+   
+    public ResultSet tampiltransaksi (Integer faktur){
+        try{
+            Connection koneksi = KoneksiDB.getConnection();
+            String query = "SELECT * FROM transaksi WHERE faktur = ?";
+            PreparedStatement preparedStatement = koneksi.prepareCall(query);
+            
+            preparedStatement.setInt(1, faktur);
+            this.rs = preparedStatement.executeQuery();
+            return this.rs;
+            
+        } catch (ClassNotFoundException | SQLException ex ){
+        System.out.println("Error BROK : "+ ex.getMessage());
+        
+        return this.rs;
+        }      
+    }
+    
+        public void updatebarang (Integer jumlbarang, Integer kode_barang){
+        try{
+            Connection koneksi = KoneksiDB.getConnection();
+            String query = "UPDATE barang SET jumlah_barang = ? WHERE kode_barang = ?";
+            PreparedStatement preparedStatement = koneksi.prepareCall(query);
+            
+            preparedStatement.setInt(1, jumlbarang);
+            preparedStatement.setInt(2, kode_barang);
+            preparedStatement.executeUpdate();
+            
+            
+        } catch (ClassNotFoundException | SQLException ex ){
+        System.out.println("Error BROK : "+ ex.getMessage());
+        
+        }      
+    }
 }

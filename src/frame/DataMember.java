@@ -51,7 +51,8 @@ public class DataMember extends javax.swing.JFrame {
             int i = 0;
             if (rs != null) {  // Add this check
                 while (rs.next()) {
-                    modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"), rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
+                    modeltabel.addRow(new Object[]{rs.getString("id_member"), rs.getString("nama_member"), 
+                        rs.getString("no_hp"), rs.getString("email"), rs.getString("domisili")});
                     i++;
                 }
             }
