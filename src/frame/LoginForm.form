@@ -52,10 +52,8 @@
                               <EmptySpace pref="191" max="32767" attributes="0"/>
                               <Component id="LoginButton" min="-2" pref="101" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="InputUsername" pref="380" max="32767" attributes="0"/>
-                              <Component id="inputPassword" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="InputUsername" alignment="0" pref="380" max="32767" attributes="0"/>
+                          <Component id="inputPassword" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

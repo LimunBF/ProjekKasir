@@ -116,9 +116,8 @@ public class LoginForm extends javax.swing.JFrame {
                                 .addComponent(CreateAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                                 .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(InputUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                                .addComponent(inputPassword)))))
+                            .addComponent(InputUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                            .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
