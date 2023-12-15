@@ -1,0 +1,8 @@
+Kelompok Pemrograman
+
+1. Raden Hanif Satria Adjistama K3520064/ Mendesain Layout JFrame dan membuat Login
+2. Lintang Mukti Nugroho 	K3522040/ Membuat CRUD Member, transaksi dan riwayat transaksi
+3. Septian Dwi Cahyo Nugroho	K3522078/ Membuat CRUD Barang, transaksi dan riwayat transaksi
+
+
+link : https://github.com/LimunBF/ProjekKasir.git
