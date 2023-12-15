@@ -233,9 +233,9 @@ public class DataMember extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -258,12 +258,8 @@ public class DataMember extends javax.swing.JFrame {
                         .addGap(0, 49, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(InputKode, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(LabelDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(InputKode, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -394,7 +390,7 @@ public class DataMember extends javax.swing.JFrame {
               }
 
               try {
-                  int NoHPmember = Integer.parseInt(cleanedPhoneNumber);
+                  long NoHPmember = Long.parseLong(cleanedPhoneNumber);
                   // Continue with the rest of your code, e.g., calling CreateMember.CreateDataMember
                   CreateMember.CreateDataMember(Namamember, NoHPmember, Emailmember, Domisilimember, rootPane);
                   refreshTable();
@@ -449,19 +445,47 @@ public class DataMember extends javax.swing.JFrame {
 
     private void btnEditMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditMemberActionPerformed
         // TODO add your handling code here:
-        UpdateMember updateData = new UpdateMember();
-        updateData.updateDataMember(
-            Integer.parseInt(InputKode.getText()),
-            InputNama.getText(),
-            Integer.parseInt(InputHandphone.getText()),
-            InputEmail.getText(),
-            InputDomisili.getText(),
-            rootPane
-        );
-   
-        DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
-        tabel.addRow(new Object[]{InputKode.getText(), InputNama.getText(), InputHandphone.getText(),InputEmail.getText(), InputDomisili.getText()});
-        tabel.removeRow(selectedRow);
+        try {
+            UpdateMember updateData = new UpdateMember();
+
+            // Parse the input values
+            int kodeMember = Integer.parseInt(InputKode.getText());
+            String namaMember = InputNama.getText();
+            String emailMember = InputEmail.getText();
+            String domisiliMember = InputDomisili.getText();
+
+            // Parse the phone number into a long
+            long noHPMember;
+            try {
+                noHPMember = Long.parseLong(InputHandphone.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(rootPane, "Invalid phone number format. Please enter a valid number.");
+                return; // Stop further processing if the phone number is not a valid number
+            }
+
+            // Update the member data
+            updateData.updateDataMember(kodeMember, namaMember, noHPMember, emailMember, domisiliMember, rootPane);
+
+            // Update the row in the table
+            DefaultTableModel tabel = (DefaultTableModel) tabelDataMember.getModel();
+            tabel.setValueAt(InputKode.getText(), selectedRow, 0);
+            tabel.setValueAt(InputNama.getText(), selectedRow, 1);
+            tabel.setValueAt(InputHandphone.getText(), selectedRow, 2);
+            tabel.setValueAt(InputEmail.getText(), selectedRow, 3);
+            tabel.setValueAt(InputDomisili.getText(), selectedRow, 4);
+
+            // Clear the input fields
+            InputKode.setText("");
+            InputNama.setText("");
+            InputHandphone.setText("");
+            InputEmail.setText("");
+            InputDomisili.setText("");
+
+            // Refresh the table
+            refreshTable();
+        } catch (HeadlessException e) {
+            e.printStackTrace();
+        }  
     }//GEN-LAST:event_btnEditMemberActionPerformed
 
     private void tabelDataMemberMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelDataMemberMousePressed

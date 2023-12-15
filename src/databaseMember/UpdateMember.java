@@ -12,14 +12,14 @@ import javax.swing.JRootPane;
 import koneksi.KoneksiDB;
 
 public class UpdateMember {
-    public void updateDataMember(int id_member, String nama_member, int no_hp, String email, String domisili, JRootPane rootPane){
+    public void updateDataMember(int id_member, String nama_member, long no_hp, String email, String domisili, JRootPane rootPane){
         try {
             Connection koneksi = KoneksiDB.getConnection();
             String updateQuery = "UPDATE member SET nama_member = ?, no_hp = ?, email = ?, domisili = ? WHERE id_member = ?";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(updateQuery);
-            
+            PreparedStatement                     
+            preparedStatement = koneksi.prepareStatement(updateQuery);
             preparedStatement.setString(1, nama_member);
-            preparedStatement.setInt(2, no_hp);
+            preparedStatement.setLong(2, no_hp);
             preparedStatement.setString(3, email);
             preparedStatement.setString(4, domisili);
             preparedStatement.setInt(5, id_member);

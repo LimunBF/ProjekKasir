@@ -8,13 +8,13 @@ import javax.swing.JRootPane;
 import koneksi.KoneksiDB;
 
 public class CreateMember {
-    public static void CreateDataMember(String Namamember, int cleanedPhoneNumber, String Emailmember, String Domisilimember, JRootPane rootPane) {
+    public static void CreateDataMember(String Namamember, long NoHPmember, String Emailmember, String Domisilimember, JRootPane rootPane) {
         try (Connection koneksi = KoneksiDB.getConnection()) {
             String insertQuery = "INSERT INTO member (nama_member, no_hp, email, domisili) VALUES (?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery)) {
                 // Set parameters
                 preparedStatement.setString(1, Namamember);
-                preparedStatement.setInt(2, cleanedPhoneNumber);
+                preparedStatement.setLong(2, NoHPmember);
                 preparedStatement.setString(3, Emailmember);
                 preparedStatement.setString(4, Domisilimember);
 

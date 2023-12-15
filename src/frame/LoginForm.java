@@ -45,7 +45,6 @@ public class LoginForm extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 102, 255));
         setMaximumSize(new java.awt.Dimension(1131131313, 1313131313));
         setMinimumSize(new java.awt.Dimension(488, 600));
-        setPreferredSize(new java.awt.Dimension(488, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(488, 600));
 
