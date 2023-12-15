@@ -29,10 +29,10 @@ public class DaftarTransaksi extends javax.swing.JFrame {
         "No",
         "No Faktur", 
         "Tanggal", 
-        "Barang", 
-        "Jumlah",
-        "Member",
-        "Nominal",
+        "Member", 
+        "Total Harga",
+        "Harga Barang",
+        "Total Barang",
         };   
         DefaultTableModel modeltabel = new DefaultTableModel(columns, 0) {
             @Override
@@ -88,10 +88,10 @@ public class DaftarTransaksi extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("DAFTAR TRANSAKSI");
 
-        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         usernameAdmin.setText("username");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Selamat datang");
 
         jTable1.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,7 +142,7 @@ public class DaftarTransaksi extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(usernameAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)

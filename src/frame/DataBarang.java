@@ -213,10 +213,10 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Selamat datang");
 
-        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         usernameAdmin.setText("username");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -245,9 +245,9 @@ public class DataBarang extends javax.swing.JFrame {
                                     .addGap(637, 637, 637))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(18, 18, 18)
                                     .addComponent(usernameAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(211, 211, 211)
+                                    .addGap(199, 199, 199)
                                     .addComponent(jLabel6))))
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(42, 42, 42)

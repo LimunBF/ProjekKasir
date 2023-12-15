@@ -47,10 +47,10 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
 
-        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        usernameAdmin.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         usernameAdmin.setText("username");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Selamat Datang");
 
         btnBarang.setBackground(new java.awt.Color(153, 153, 255));
@@ -116,7 +116,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnLogout)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(usernameAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
