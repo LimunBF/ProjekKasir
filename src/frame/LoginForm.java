@@ -44,18 +44,21 @@ public class LoginForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 102, 255));
         setMaximumSize(new java.awt.Dimension(1131131313, 1313131313));
-        setMinimumSize(new java.awt.Dimension(488, 453));
-        setPreferredSize(new java.awt.Dimension(488, 453));
+        setMinimumSize(new java.awt.Dimension(488, 600));
+        setPreferredSize(new java.awt.Dimension(488, 600));
         setResizable(false);
-        setSize(new java.awt.Dimension(488, 453));
+        setSize(new java.awt.Dimension(488, 600));
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(488, 421));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
+        jPanel1.setMinimumSize(new java.awt.Dimension(488, 511));
+        jPanel1.setPreferredSize(new java.awt.Dimension(488, 511));
 
         LoginText.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        LoginText.setForeground(new java.awt.Color(255, 255, 255));
         LoginText.setText("LOGIN");
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Username");
 
         InputUsername.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -75,6 +78,7 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
 
         inputPassword.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,12 +102,14 @@ public class LoginForm extends javax.swing.JFrame {
 
         LoginButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         LoginButton.setText("LOGIN");
+        LoginButton.setSelected(true);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Download\\free-user-login-icon-305-thumb (1).png")); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -115,9 +121,6 @@ public class LoginForm extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(LoginText))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addComponent(jLabel3)
@@ -133,16 +136,19 @@ public class LoginForm extends javax.swing.JFrame {
                         .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(CreateAdmin)))
+                        .addComponent(CreateAdmin))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(LoginText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(40, 40, 40)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -170,7 +176,7 @@ public class LoginForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -179,6 +185,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void CreateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAdminActionPerformed
         // TODO add your handling code here:
+        dispose();
         CreateAdmin framecreate = new CreateAdmin();
         framecreate.setVisible(true);
     }//GEN-LAST:event_CreateAdminActionPerformed
