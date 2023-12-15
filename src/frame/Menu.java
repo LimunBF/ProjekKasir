@@ -144,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.setBackground(java.awt.Color.green);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Eclipse Java\\ProjekKasir\\Orange_ Colorful Pens & Stationery From Japan & Beyond.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Semester 3\\Praktikum PBO\\ProjekKasir\\Orange_ Colorful Pens & Stationery From Japan & Beyond.png")); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

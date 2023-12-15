@@ -57,7 +57,7 @@ public class CreateAdmin extends javax.swing.JFrame {
         jLabel4.setText("TOKO ALAT TULIS");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("E:\\Download\\1311369_469-removebg-preview.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Semester 3\\Praktikum PBO\\ProjekKasir\\1311369_469-removebg-preview.png")); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 280, 220));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));

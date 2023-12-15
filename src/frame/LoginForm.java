@@ -110,6 +110,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Semester 3\\Praktikum PBO\\ProjekKasir\\free-user-login-icon-305-thumb (1).png")); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
