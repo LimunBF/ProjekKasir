@@ -55,7 +55,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnBarang.setBackground(new java.awt.Color(153, 153, 255));
         btnBarang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBarang.setForeground(new java.awt.Color(0, 0, 0));
         btnBarang.setText("BARANG");
         btnBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +64,6 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(102, 255, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setLabel("DAFTAR \nTRANSAKSI\n");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +74,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnMember.setBackground(new java.awt.Color(255, 153, 153));
         btnMember.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnMember.setForeground(new java.awt.Color(0, 0, 0));
         btnMember.setText("MEMBER");
         btnMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +83,6 @@ public class Menu extends javax.swing.JFrame {
 
         btnTransaksi.setBackground(new java.awt.Color(255, 204, 102));
         btnTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnTransaksi.setForeground(new java.awt.Color(0, 0, 0));
         btnTransaksi.setText("TRANSAKSI");
         btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +144,7 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel2.setBackground(java.awt.Color.green);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\Download\\Orange_ Colorful Pens & Stationery From Japan & Beyond.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Eclipse Java\\ProjekKasir\\Orange_ Colorful Pens & Stationery From Japan & Beyond.png")); // NOI18N
         jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

@@ -93,7 +93,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         CreateAdmin.setBackground(new java.awt.Color(255, 153, 153));
         CreateAdmin.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        CreateAdmin.setForeground(new java.awt.Color(0, 0, 0));
         CreateAdmin.setText("CREATE");
         CreateAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +102,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         LoginButton.setBackground(new java.awt.Color(102, 255, 102));
         LoginButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        LoginButton.setForeground(new java.awt.Color(0, 0, 0));
         LoginButton.setText("LOGIN");
         LoginButton.setSelected(true);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +110,6 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("E:\\Download\\free-user-login-icon-305-thumb (1).png")); // NOI18N
         jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
