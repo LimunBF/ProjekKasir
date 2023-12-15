@@ -94,7 +94,9 @@ public class DaftarTransaksi extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Selamat datang");
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -114,6 +116,9 @@ public class DaftarTransaksi extends javax.swing.JFrame {
             }
         });
 
+        btnCariTransaksi.setBackground(new java.awt.Color(0, 255, 204));
+        btnCariTransaksi.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        btnCariTransaksi.setForeground(new java.awt.Color(0, 0, 0));
         btnCariTransaksi.setText("Cari");
         btnCariTransaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +126,8 @@ public class DaftarTransaksi extends javax.swing.JFrame {
             }
         });
 
+        btnKembali.setBackground(new java.awt.Color(255, 102, 102));
+        btnKembali.setForeground(new java.awt.Color(0, 0, 0));
         btnKembali.setText("Kembali");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

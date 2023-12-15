@@ -139,6 +139,8 @@ public class DataBarang extends javax.swing.JFrame {
 
         jLabel3.setText("JUMLAH BARANG");
 
+        btnSimpanBarang.setBackground(new java.awt.Color(0, 255, 153));
+        btnSimpanBarang.setForeground(new java.awt.Color(0, 0, 0));
         btnSimpanBarang.setText("SIMPAN");
         btnSimpanBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +148,8 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
+        tabelDataBarang.setBackground(new java.awt.Color(255, 255, 255));
+        tabelDataBarang.setForeground(new java.awt.Color(0, 0, 0));
         tabelDataBarang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -173,6 +177,8 @@ public class DataBarang extends javax.swing.JFrame {
             tabelDataBarang.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        btnCari.setBackground(new java.awt.Color(0, 255, 204));
+        btnCari.setForeground(new java.awt.Color(0, 0, 0));
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,6 +186,8 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
+        btnEditBarang.setBackground(new java.awt.Color(0, 204, 204));
+        btnEditBarang.setForeground(new java.awt.Color(0, 0, 0));
         btnEditBarang.setText("EDIT");
         btnEditBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +195,8 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
+        btnHapusBarang.setBackground(new java.awt.Color(255, 51, 102));
+        btnHapusBarang.setForeground(new java.awt.Color(0, 0, 0));
         btnHapusBarang.setText("HAPUS");
         btnHapusBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +204,8 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
 
+        btnKembali.setBackground(new java.awt.Color(255, 102, 102));
+        btnKembali.setForeground(new java.awt.Color(0, 0, 0));
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

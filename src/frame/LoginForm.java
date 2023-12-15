@@ -92,7 +92,9 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        CreateAdmin.setBackground(new java.awt.Color(255, 153, 153));
         CreateAdmin.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        CreateAdmin.setForeground(new java.awt.Color(0, 0, 0));
         CreateAdmin.setText("CREATE");
         CreateAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +102,9 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        LoginButton.setBackground(new java.awt.Color(102, 255, 102));
         LoginButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        LoginButton.setForeground(new java.awt.Color(0, 0, 0));
         LoginButton.setText("LOGIN");
         LoginButton.setSelected(true);
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,14 +136,13 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(CreateAdmin))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(168, 168, 168)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LoginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CreateAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,11 +163,11 @@ public class LoginForm extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(jLabel2))
                     .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(26, 26, 26)
                 .addComponent(LoginButton)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addComponent(CreateAdmin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -246,7 +249,7 @@ public class LoginForm extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Motif".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -266,7 +269,9 @@ public class LoginForm extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 LoginForm haha = new LoginForm();
-                new LoginForm().setVisible(true);                                       
+                new LoginForm().setVisible(true);    
+                System.out.println(haha.getBackground());
+                System.out.println(haha.getColorModel());
             }
         });
     }

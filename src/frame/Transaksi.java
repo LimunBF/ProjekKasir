@@ -372,22 +372,39 @@ public class Transaksi extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
 
+        txtKodeBarang.setBackground(new java.awt.Color(255, 255, 255));
         txtKodeBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKodeBarangActionPerformed(evt);
             }
         });
 
+        txtTotalHargaBarang.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotalHargaBarang.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtJumlahBarang.setBackground(new java.awt.Color(255, 255, 255));
+        txtJumlahBarang.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtHargaBarang.setBackground(new java.awt.Color(255, 255, 255));
+        txtHargaBarang.setForeground(new java.awt.Color(0, 0, 0));
+
+        txtNamaBarang.setBackground(new java.awt.Color(255, 255, 255));
+        txtNamaBarang.setForeground(new java.awt.Color(0, 0, 0));
         txtNamaBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaBarangActionPerformed(evt);
             }
         });
 
+        txtKodeMember.setBackground(new java.awt.Color(255, 255, 255));
+        txtKodeMember.setForeground(new java.awt.Color(0, 0, 0));
+
         jLabel2.setText("Kode Member");
 
         jLabel3.setText("Barang");
 
+        btnInput.setBackground(new java.awt.Color(51, 255, 255));
+        btnInput.setForeground(new java.awt.Color(0, 0, 0));
         btnInput.setText("Tambah");
         btnInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,6 +422,9 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Rp0");
 
+        tblTransaksi.setBackground(new java.awt.Color(255, 255, 255));
+        tblTransaksi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblTransaksi.setForeground(new java.awt.Color(0, 0, 0));
         tblTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -415,6 +435,8 @@ public class Transaksi extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblTransaksi);
 
+        btnBayar.setBackground(new java.awt.Color(0, 255, 153));
+        btnBayar.setForeground(new java.awt.Color(0, 0, 0));
         btnBayar.setText("Bayar");
         btnBayar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,8 +446,13 @@ public class Transaksi extends javax.swing.JFrame {
 
         jLabel4.setText("Subtotal");
 
+        txtSubtotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtSubtotal.setForeground(new java.awt.Color(0, 0, 0));
+
         jLabel5.setText("Diskon");
 
+        txtDiskon.setBackground(new java.awt.Color(255, 255, 255));
+        txtDiskon.setForeground(new java.awt.Color(0, 0, 0));
         txtDiskon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiskonActionPerformed(evt);
@@ -434,8 +461,16 @@ public class Transaksi extends javax.swing.JFrame {
 
         jLabel6.setText("Total");
 
+        txtTotal.setBackground(new java.awt.Color(255, 255, 255));
+        txtTotal.setForeground(new java.awt.Color(0, 0, 0));
+
         jLabel7.setText("Bayar");
 
+        txtBayar.setBackground(new java.awt.Color(255, 255, 255));
+        txtBayar.setForeground(new java.awt.Color(0, 0, 0));
+
+        btnKembali.setBackground(new java.awt.Color(255, 51, 51));
+        btnKembali.setForeground(new java.awt.Color(0, 0, 0));
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,7 +516,7 @@ public class Transaksi extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(btnKembali)

@@ -153,6 +153,8 @@ public class DataMember extends javax.swing.JFrame {
 
         LabelKOde.setText("KODE MEMBER");
 
+        tabelDataMember.setBackground(new java.awt.Color(255, 255, 255));
+        tabelDataMember.setForeground(new java.awt.Color(0, 0, 0));
         tabelDataMember.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -178,6 +180,8 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
+        btnSimpanMember.setBackground(new java.awt.Color(0, 255, 153));
+        btnSimpanMember.setForeground(new java.awt.Color(0, 0, 0));
         btnSimpanMember.setText("SIMPAN");
         btnSimpanMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +189,8 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
+        btnCari.setBackground(new java.awt.Color(0, 255, 204));
+        btnCari.setForeground(new java.awt.Color(0, 0, 0));
         btnCari.setText("Cari");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +198,8 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
+        btnEditMember.setBackground(new java.awt.Color(0, 204, 204));
+        btnEditMember.setForeground(new java.awt.Color(0, 0, 0));
         btnEditMember.setText("EDIT");
         btnEditMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +207,8 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
+        btnHapusMember.setBackground(new java.awt.Color(255, 51, 102));
+        btnHapusMember.setForeground(new java.awt.Color(0, 0, 0));
         btnHapusMember.setText("HAPUS");
         btnHapusMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +216,8 @@ public class DataMember extends javax.swing.JFrame {
             }
         });
 
+        btnKembali.setBackground(new java.awt.Color(255, 102, 102));
+        btnKembali.setForeground(new java.awt.Color(0, 0, 0));
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
